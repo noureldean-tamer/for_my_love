@@ -1,0 +1,169 @@
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+/* تظبيط خاص بالشات علشان رسايل البوت ورسايلها تترتب صح */
+.chat-container {
+    direction: rtl !important;
+}
+
+.message {
+    clear: both;
+}
+
+.bot-msg {
+    float: right;
+    text-align: right;
+    border-radius: 15px 15px 0px 15px; /* شكل فقاعة الكلام من اليمين */
+}
+
+.user-msg {
+    float: left;
+    text-align: right;
+    border-radius: 15px 15px 15px 0px; /* شكل فقاعة الكلام من الشمال */
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+body { background-color: #0d0d13; color: #fff; overflow-x: hidden; min-height: 100vh; }
+.stage { width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.5s ease-in-out; position: relative; z-index: 2; }
+.hidden { display: none !important; }
+
+/* تأثيرات النيون الـ Cyber */
+.neon-text-pulse { color: #ff007f; text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f; animation: pulse 1.5s infinite alternate; }
+.neon-subtext { color: #00ffcc; text-shadow: 0 0 5px #00ffcc; margin: 10px 0; font-size: 14px;}
+
+/* 1. الـ Terminal والـ Numpad */
+.terminal-container { width: 90%; max-width: 500px; background: rgba(20, 20, 30, 0.9); border: 2px solid #ff007f; box-shadow: 0 0 20px rgba(255, 0, 127, 0.3); border-radius: 10px; overflow: hidden; padding: 15px;}
+#terminal-text {
+    direction: ltr !important;
+    text-align: left !important;
+    display: block;
+    white-space: pre-wrap; /* عشان السطور تنزل تحت بعضها مظبوط */
+}
+.terminal-header { display: flex; gap: 8px; margin-bottom: 10px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+.terminal-body { font-family: 'Courier New', monospace; color: #00ffcc; }
+#vault-code { width: 100%; padding: 10px; text-align: center; background: #000; border: 1px solid #00ffcc; color: #00ffcc; font-size: 20px; margin-bottom: 15px; letter-spacing: 3px; }
+.numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 220px; margin: 0 auto 15px auto; }
+.numpad button { padding: 12px; background: #1a1a26; border: 1px solid #ff007f; color: #fff; font-size: 18px; cursor: pointer; border-radius: 5px; }
+.numpad button:active { background: #ff007f; }
+
+/* [إضافة 3] أنميشن بصمة الإصبع والليزر */
+.fingerprint-wrapper { width: 80px; height: 80px; margin: 15px auto; position: relative; border: 2px dashed #00ffcc; border-radius: 50%; padding: 10px; cursor: pointer; user-select: none; -webkit-user-select: none; }
+.fingerprint-svg { fill: #00ffcc; width: 100%; height: 100%; filter: drop-shadow(0 0 5px #00ffcc); }
+.laser-line { position: absolute; width: 100%; height: 3px; background: #ff007f; box-shadow: 0 0 10px #ff007f; top: 0; left: 0; display: none; }
+.scanning .laser-line { display: block; animation: laserMove 1.5s infinite linear; }
+@keyframes laserMove { 0% { top: 0%; } 50% { top: 100%; } 100% { top: 0%; } }
+
+/* [إضافة 5] تأثير تمزيق زجاج الشاشة */
+#shatter-overlay { position: fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; pointer-events:none; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(4, 1fr); }
+.glass-shard { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+
+/* 2. شات الـ Glassmorphism */
+#particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; pointer-events: none; }
+.chat-container { width: 90%; max-width: 400px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); overflow: hidden; }
+.chat-header { background: rgba(255, 0, 127, 0.2); padding: 12px; text-align: center; }
+.chat-messages { padding: 15px; height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.message { padding: 8px 12px; border-radius: 15px; max-width: 80%; animation: fadeIn 0.3s ease-in; font-size: 14px;}
+.bot-msg { background: #26263b; align-self: flex-start; }
+.user-msg { background: #ff007f; align-self: flex-end; }
+.chat-options { padding: 15px; display: flex; justify-content: center; gap: 10px; background: rgba(0,0,0,0.2); }
+.chat-options button, #btn-dark-mode { padding: 8px 16px; background: #ff007f; border: none; color: white; border-radius: 20px; cursor: pointer; font-weight: bold; box-shadow: 0 0 10px #ff007f; }
+
+/* 3. الجواب والـ 3D Carousel ومطر القلوب */
+.envelope-wrapper { height: 150px; cursor: pointer; display: flex; justify-content: center; }
+.envelope { position: relative; width: 200px; height: 120px; background: #30304a; border: 2px solid #ff007f; }
+.envelope .top { position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 100px solid transparent; border-right: 100px solid transparent; border-top: 60px solid #ff007f; transform-origin: top; transition: transform 0.4s; z-index: 3; }
+.envelope.open .top { transform: rotateX(180deg); z-index: 1; }
+#letter-scroll { width: 90%; max-width: 600px; background: #fffbfa; color: #2b2b2b; padding: 30px 20px; border-radius: 10px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.handwritten { font-family: 'Reenie Beanie', cursive; font-size: 32px; text-align: right; direction: rtl; margin: 15px 0;}
+
+/* [إضافة 4] ستايل العداد الزمني */
+.ticker-wrapper { background: #1a1a26; color: #00ffcc; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 20px; border: 1px solid #00ffcc; }
+#love-ticker { font-size: 18px; font-weight: bold; margin-top: 5px; letter-spacing: 1px; }
+
+/* [إضافة 1] ستايل مطر القلوب والبلالين المستمر */
+#floating-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
+.floating-element { position: absolute; bottom: -50px; font-size: 24px; animation: floatUp 6s linear infinite; opacity: 0.8; }
+@keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.8; } 90% { opacity: 0.8; } 100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; } }
+
+/* [إضافة 2] الكاميرا السحرية ثلاثية الأبعاد 3D Carousel */
+.carousel-container { width: 100%; height: 250px; display: flex; justify-content: center; align-items: center; perspective: 1000px; margin: 40px 0; overflow: hidden;}
+.carousel-3d { width: 140px; height: 180px; position: relative; transform-style: preserve-3d; animation: spinCarousel 20s infinite linear; }
+.carousel-3d:hover { animation-play-state: paused; }
+.carousel-item { position: absolute; width: 140px; height: 180px; left: 0; top: 0; background: white; padding: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); backface-visibility: hidden; transition: transform 0.5s; text-align: center;}
+.carousel-item img { width: 100%; height: 140px; object-fit: cover; }
+.carousel-item p { font-size: 12px; color: #333; font-weight: bold; margin-top: 3px; }
+/* توزيع الكروت الـ 4 في الفراغ ثلاثي الأبعاد */
+.carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(160px); }
+.carousel-item:nth-child(2) { transform: rotateY(90deg) translateZ(160px); }
+.carousel-item:nth-child(3) { transform: rotateY(180deg) translateZ(160px); }
+.carousel-item:nth-child(4) { transform: rotateY(270deg) translateZ(160px); }
+@keyframes spinCarousel { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
+
+/* 4. الـ Spotlight والعالم المخفي [إضافة 6] */
+#spotlight { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; z-index: 99; pointer-events: none; opacity: 0; transition: opacity 0.5s; }
+body.spotlight-active #spotlight { opacity: 1; background: radial-gradient(circle 100px at 0px 0px, transparent 100%, rgba(0,0,0,0.99) 100%); }
+
+/* الطبقة المخفية بالكامل ولا تظهر إلا تحت الكشاف */
+.hidden-world-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 98; pointer-events: none; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.hidden-magic-heart { font-size: 120px; color: #ff007f; text-shadow: 0 0 30px #ff007f; opacity: 0.1; transform: scale(0.8); transition: all 0.5s; position: absolute; top: 25%; }
+/* الجملة المخفية */
+.hidden-treasure { position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; text-shadow: 0 0 15px #fff; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+الكارت النهائي الـ Premium للمفاجأة الكبرى
+.final-card {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(20px);
+    border: 2px solid #ff007f;
+    box-shadow: 0 0 30px rgba(255, 0, 127, 0.4);
+    padding: 25px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    color: #fff;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.final-hero-img {
+    width: 100%;
+    height: auto;          /* خليه تلقائي علشان يحافظ على أبعاد الصورة الأصلية */
+    max-height: 380px;     /* أقصى طول مسموح بيه علشان ما تضربش الشاشة */
+    object-fit: contain;   /* السحر هنا: بيجبر المتصفح يعرض الصورة كاملة بدون أي قص أو مط */
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3); /* خلفية خفيفة ورا الصورة لو فيها فراغات */
+}
+
+.final-card h2 {
+    font-size: 20px;
+    color: #00ffcc;
+    text-shadow: 0 0 5px #00ffcc;
+    margin-bottom: 10px;
+}
+
+.final-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    direction: rtl;
+}
+/* تأثير حركة الهروب الناعمة للزرار المشاكس */
+#btn-runaway {
+    transition: left 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), top 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #444454 !important;
+    color: #aaa !important;
+    border: 1px solid #555 !important;
+    box-shadow: none !important;
+}
+.chat-img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: block;
+}
